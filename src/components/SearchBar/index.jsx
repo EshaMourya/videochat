@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 function SearchBar(props) {
     const [jobCriteria, setJobCriteria] = useState({
         title: "",
-        locaion: "",
+        location: "",
         experience: "",
         type:""
     })
@@ -13,9 +13,13 @@ function SearchBar(props) {
             ...prevState,
             [e.target.name]: e.target.value
         }))
+        // Log the current field and its value to ensure it's updating
+        console.log(`${e.target.name}: ${e.target.value}`);
     }
 
     const search = async() => {
+        // Log the job criteria before calling the fetch function to see if it's correct
+        console.log("Searching with criteria:", jobCriteria);
         await props.fetchJobsCustom(jobCriteria);
     }
     
@@ -54,4 +58,4 @@ function SearchBar(props) {
   )
 }
 
-export default SearchBar
+export default SearchBar;
